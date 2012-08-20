@@ -21,3 +21,9 @@ wtf("blip!")
 
 if len(sys.argv) >1:
     print "first argument is: %s" % sys.argv[1]
+
+print '================='
+myList = ['one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve']
+myList.sort()
+for item in myList:
+    print item
