@@ -20,5 +20,5 @@ print "If I add %d, %d, and %d I get %d." % (my_age, my_height, my_weight, my_ag
 
 # %s = String (converts any Python object using str()).
 # %d = Signed integer decimal.
-# %r = String (converts any Python object using repr()).
+# %r = String (converts any Python object using repr()). (%r will give you the "raw programmer's" version of variable, also known as the "representation")
 # see http://docs.python.org/library/stdtypes.html#string-formatting-operations
