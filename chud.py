@@ -1,10 +1,21 @@
 import sys, os, feedparser, BeautifulSoup
 
-__author__ = 'jasonwaters'
+if len(sys.argv) >1:
+    print "first argument is: %s" % sys.argv[1]
+else:
+	print "no agument was supplied"
+print '================='
+
+
+if True:
+    print "it's true"
+else:
+    print "it's false"
+
 
 count=1
 max=15
-your_mom_is_dumb=1
+your_mom_is_dumb=True
 
 while count <= max:
     print 'number',count
@@ -19,8 +30,8 @@ def wtf(something):
 wtf("bobbo!")
 wtf("blip!")
 
-if len(sys.argv) >1:
-    print "first argument is: %s" % sys.argv[1]
+
+
 
 print '================='
 myList = ['one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve']
