@@ -1,5 +1,5 @@
-from api import StreamClient, ObjCode, AtTaskObject
-from dot8_credentials import API_URL, USERNAME, PASSWORD
+from experiments.api import StreamClient, ObjCode
+from experiments.dot8_credentials import API_URL, USERNAME, PASSWORD
 
 GANG_GREEN = '501ad8da000020e7edc603378964c6e8'
 APERTURE = '4ffe5ced000065b2a4dbc3349040eeaf'

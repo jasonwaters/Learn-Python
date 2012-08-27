@@ -1,5 +1,5 @@
-from api import StreamClient, ObjCode, AtTaskObject
-from local_credentials import API_URL, USERNAME, PASSWORD
+from experiments.api import StreamClient, ObjCode
+from experiments.local_credentials import API_URL, USERNAME, PASSWORD
 
 PROJECT_ID = "50047866000005b833d7a1da52e5f69c"
 
