@@ -1,5 +1,7 @@
-from experiments.api import StreamClient, ObjCode
-from experiments.dot8_credentials import API_URL, USERNAME, PASSWORD
+import argparse
+import sys
+from api import StreamClient, ObjCode
+from dot8_credentials import API_URL, USERNAME, PASSWORD
 
 GANG_GREEN = '501ad8da000020e7edc603378964c6e8'
 APERTURE = '4ffe5ced000065b2a4dbc3349040eeaf'
@@ -18,7 +20,6 @@ AGILE_LEAD = {
     JIGGLYPUFF: JAKE_TURPIN
 }
 
-
 TEAM_PROJECTS = [GANG_GREEN,APERTURE,TWACA,JIGGLYPUFF]
 
 CATEGORY_BACKLOG_ITEM = '4c78aaa7000c4bc23722d1bebdf9d77f'
@@ -27,6 +28,12 @@ class TShirtSize:
     SMALL = 5
     MEDIUM = 10
     LARGE = 15
+
+#get the command line parameters and make sense of them
+parser = argparse.ArgumentParser(description='Issue To Task')
+parser.add_argument('issueID', action='store', type=str, help="This is the issue GUID on dot8")
+parser.add_argument('-b', action='store_true', default=False, dest='isBlocking', help='Whether to set it as a blocking task')
+args = parser.parse_args() #we will refer to this object later to key off the properties set on it
 
 connection = StreamClient(API_URL)
 
@@ -55,7 +62,7 @@ def line():
 #    project = connection.get(ObjCode.PROJECT,teamID,['tasks:*'])
 #    printProject(project)
 
-issue = connection.get(ObjCode.ISSUE, '50353237000546e5ff90f37a3f9b9ede',['priority', 'description', 'resolvingObjID'])
+issue = connection.get(ObjCode.ISSUE, args.issueID,['priority', 'description', 'resolvingObjID'])
 
 def addTaskFromIssue(issue, projectID, isBlocking=False):
     if issue['resolvingObjID'] is None:
@@ -65,7 +72,7 @@ def addTaskFromIssue(issue, projectID, isBlocking=False):
             'name': issue['name'],
             'description': issue['description'],
             'categoryID': CATEGORY_BACKLOG_ITEM,
-            'DE:Blocking': 'Yes' if isBlocking else 'No',
+            'DE:Blocking': 'Yes' if args.isBlocking else 'No',
             'DE:T-Shirt Size': TShirtSize.SMALL,
             'projectID':projectID,
             'assignedToID': AGILE_LEAD[projectID],
@@ -77,9 +84,8 @@ def addTaskFromIssue(issue, projectID, isBlocking=False):
             'resolvingObjID': task['ID']
         })
 
-print issue['priority']
-
-
-
+print issue['name']
+print args.issueID
+print args.isBlocking
 
 #addTaskFromIssue(issue, TWACA, True)
