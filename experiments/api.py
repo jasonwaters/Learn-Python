@@ -233,4 +233,4 @@ class ObjCode:
     DOCUMENT = 'docu'
     DOCUMENT_VERSION = 'docv'
     EXPENSE = 'expns'
-    CUSTOM_ENUM = 'custem'
+    CUSTOM_ENUM = 'cstem'

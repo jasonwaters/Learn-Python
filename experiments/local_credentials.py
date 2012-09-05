@@ -1,3 +1,3 @@
-API_URL = "http://localhost:8080/attask/api-internal"
+ATTASK_BASE_URL = "http://localhost:8080"
 USERNAME = "admin"
 PASSWORD = "user"

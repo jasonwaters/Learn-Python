@@ -1,7 +1,9 @@
 import argparse
 import sys
 from api import StreamClient, ObjCode
-from dot8_credentials import API_URL, USERNAME, PASSWORD
+from dot8_credentials import ATTASK_BASE_URL, USERNAME, PASSWORD
+
+API_URL = ATTASK_BASE_URL+"/attask/api-internal"
 
 GANG_GREEN = '501ad8da000020e7edc603378964c6e8'
 APERTURE = '4ffe5ced000065b2a4dbc3349040eeaf'
@@ -33,6 +35,8 @@ class TShirtSize:
 parser = argparse.ArgumentParser(description='Issue To Task')
 parser.add_argument('issueID', action='store', type=str, help="This is the issue GUID on dot8")
 parser.add_argument('-b', action='store_true', default=False, dest='isBlocking', help='Whether to set it as a blocking task')
+parser.add_argument('-p', nargs="?", dest='points', default=0, type=int, required=False, help='How many points the task is worth')
+
 args = parser.parse_args() #we will refer to this object later to key off the properties set on it
 
 connection = StreamClient(API_URL)
@@ -57,26 +61,29 @@ def line():
     print "="*100
 
 
+
+
 #print all top level tasks for all teams
 #for teamID in TEAMS:
 #    project = connection.get(ObjCode.PROJECT,teamID,['tasks:*'])
 #    printProject(project)
 
+#taskPriorities = connection.get(ObjCode.CUSTOM_ENUM, "taskPriorities")
+#issuePriorities = connection.get(ObjCode.CUSTOM_ENUM, "opTaskPriorities")
+
 issue = connection.get(ObjCode.ISSUE, args.issueID,['priority', 'description', 'resolvingObjID'])
 
 def addTaskFromIssue(issue, projectID, isBlocking=False):
     if issue['resolvingObjID'] is None:
-        print issue['name']
-        print issue['description']
         task = connection.post(ObjCode.TASK,{
             'name': issue['name'],
             'description': issue['description'],
             'categoryID': CATEGORY_BACKLOG_ITEM,
-            'DE:Blocking': 'Yes' if args.isBlocking else 'No',
+            'DE:Blocking': 'Yes' if isBlocking else 'No',
             'DE:T-Shirt Size': TShirtSize.SMALL,
+            'DE:Points': args.points,
             'projectID':projectID,
-            'assignedToID': AGILE_LEAD[projectID],
-#            'priority':
+            'assignedToID': AGILE_LEAD[projectID]
         })
 
         connection.put(ObjCode.ISSUE, issue['ID'],{
@@ -84,8 +91,12 @@ def addTaskFromIssue(issue, projectID, isBlocking=False):
             'resolvingObjID': task['ID']
         })
 
-print issue['name']
-print args.issueID
-print args.isBlocking
+        print "A new task '%s' was created successfully." % task['name']
+        line()
+        print ATTASK_BASE_URL + "/task/view?ID="+task['ID']
+        print ATTASK_BASE_URL + "/issue/view?ID="+issue['ID']
+    else:
+        print "Issue '%s' already has a resolving object." % issue['name']
 
-#addTaskFromIssue(issue, TWACA, True)
+addTaskFromIssue(issue, TWACA, args.isBlocking)
+
