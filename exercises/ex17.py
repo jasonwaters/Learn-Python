@@ -7,24 +7,9 @@ from os.path import exists
 
 script, from_file, to_file = argv
 
-print "Copying from %s to %s" % (from_file, to_file)
-
-# we could do these two on one line too, how?
-in_file = open(from_file)
-indata = in_file.read()
-
-#indata = open(from_file).read()
-
-print "The input file is %d bytes long" % len(indata)
-
-print "Does the output file exist? %r" % exists(to_file)
-print "Ready, hit RETURN to continue, CTRL-C to abort."
-raw_input()
-
-out_file = open(to_file, 'w')
-out_file.write(indata)
-
-print "Alright, all done."
-
-out_file.close()
-in_file.close()
+if exists(from_file):
+    indata = open(from_file).read()
+    open(to_file, 'w').write(indata)
+    print "Congratulations! '%s' ( %d bytes ) was Copied to '%s'" % (from_file, len(indata), to_file)
+else:
+    print "Sorry, '%s' does not exist." % from_file
