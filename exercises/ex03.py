@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 #http://learnpythonthehardway.org/book/ex3.html
 print "I will now count my chickens:"
 

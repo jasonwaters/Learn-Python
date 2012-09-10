@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 #http://learnpythonthehardway.org/book/ex7.html
 print "Mary had a little lamb."
 print "Its fleece was white as %s" % 'snow'

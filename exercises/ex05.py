@@ -1,4 +1,5 @@
-# -- coding: utf-8 --
+#!/usr/bin/env python
+
 #http://learnpythonthehardway.org/book/ex5.html
 my_name = 'Jason Waters'
 my_age = 30 # not a lie

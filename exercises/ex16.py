@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 #http://learnpythonthehardway.org/book/ex16.html
 from sys import argv
 

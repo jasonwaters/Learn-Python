@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 #http://learnpythonthehardway.org/book/ex9.html
 
 days = "Mon Tue Wed Thu Fri Sat Sun"

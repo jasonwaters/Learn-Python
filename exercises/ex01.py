@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 #http://learnpythonthehardway.org/book/ex1.html
 print "Hello World!"
 print "Hello Again"

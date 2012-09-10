@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 #http://learnpythonthehardway.org/book/ex11.html
 print "How old are you?",
 age = raw_input()

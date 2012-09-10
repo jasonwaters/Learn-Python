@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 #http://learnpythonthehardway.org/book/ex10.html
 
 tabby_cat = "\tI'm tabbed in."

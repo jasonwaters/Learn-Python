@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 #http://learnpythonthehardway.org/book/ex6.html
 x = "there are %d types of people." % 10
 binary = "binary"

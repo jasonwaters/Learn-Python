@@ -1,6 +1,7 @@
+#!/usr/bin/env python
+
 #http://learnpythonthehardway.org/book/ex13.html
 from sys import argv
-
 script, first, second, third = argv
 
 print "The script is called:", script
