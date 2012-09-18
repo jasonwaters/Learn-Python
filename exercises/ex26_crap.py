@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+
+#http://learnpythonthehardway.org/book/ex26.html
+
 def break_words(stuff):
     """This function will break up words for us."""
     words = stuff.split(' ')

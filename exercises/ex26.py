@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 #http://learnpythonthehardway.org/book/ex26.html
-from exercises.ex24 import beans
 
 import ex25
 
