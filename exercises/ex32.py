@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 #http://learnpythonthehardway.org/book/ex32.html
+import random
 
 hairs = ['brown', 'blond', 'red']
 eyes = ['brown', 'blue', 'green']
@@ -21,11 +22,9 @@ for i in change:
 
 elements = []
 
-for i in range(0,6):
-    print "Adding %d to the list." % i
+for i in range(0,50):
+    print "Random Number %d." % random.randint(50,100)
     elements.append(str(i) + "!!")
 
 for i in elements:
     print "Element was: %s" % i
-
-
