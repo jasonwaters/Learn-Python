@@ -27,6 +27,7 @@ class Organizer(object):
         self.supported_filetypes = []                   # Filled by extensions_list function
         self.extensions_list()
 
+        self.log("="*40)
         self.unrar_check()
         # Check that the download directory parameters is actually a directory
         self.removeFinishedTorrents()
@@ -34,7 +35,7 @@ class Organizer(object):
 
     def log(self, message):
         now = datetime.datetime.now()
-        print "%s | %s\n" % (now.strftime("%Y-%m-%d %H:%M"), message)
+        print "%s | %s\n" % (now.strftime("%Y-%m-%d %H:%M:%S"), message)
 
     '''Creates the list of extensions supported by the script'''
     def extensions_list(self):
